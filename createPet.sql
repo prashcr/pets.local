@@ -1,8 +1,9 @@
-create table Pet (
-  id int primary key,
-  name varchar not null,
-  available_from timestamp not null,
-  age int not null,
-  species varchar not null,
-  breed varchar
+DROP TABLE IF EXISTS pet;
+CREATE TABLE pet (
+  id INT PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  available_from TIMESTAMP NOT NULL,
+  age INT NOT NULL,
+  species VARCHAR NOT NULL,
+  breed VARCHAR
 );

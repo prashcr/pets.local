@@ -1,4 +1,5 @@
-create table Adopted (
-  cust_id int references Customer on delete cascade,
-  pet_id int references Pet on delete cascade
+DROP TABLE IF EXISTS adopted;
+CREATE TABLE adopted (
+  cust_id INT REFERENCES customer ON DELETE CASCADE,
+  pet_id INT REFERENCES pet ON DELETE CASCADE
 );

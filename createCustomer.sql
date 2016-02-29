@@ -1,4 +1,5 @@
-create table Customer (
-  id int primary key,
-  preference varchar
+DROP TABLE IF EXISTS customer;
+CREATE TABLE customer (
+  id INT PRIMARY KEY,
+  preference VARCHAR
 );
