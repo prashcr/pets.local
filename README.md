@@ -13,7 +13,7 @@ server.js
 ---------
 
 * Basic functionality **complete**.
-* Scale extension **complete**. Can handle matching with 500k customers, 500k pets with average server-side response time of 10ms on my Macbook Air, captured with `morgan`. For some strange reason, running it on my VPS seems to be slower.
+* Scale extension **complete**. Can handle matching with 500k customers, 500k pets with average server-side response time of 10ms on my Macbook Air/virtual server, captured with `morgan`. Takes about half a minute and a couple of requests before v8 (javascript engine) is completely warmed up.
 * Real-time extension **incomplete**. Currently, a websocket echo server is listening at `/customers/:id/matches`. Test using `wscat`
 * Location extension **incomplete**
 
