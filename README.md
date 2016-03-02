@@ -10,11 +10,14 @@ $ npm i
 $ npm start
 ```
 
+The server is currently hosted on a DigitalOcean droplet at http://128.199.245.235:4545/,
+and contains 500k customers and 500k pets, with auto-increment id fields
+
 server.js
 ---------
 
 * Basic functionality **complete**.
-* Scale extension **complete**. Can handle matching with 500k customers, 500k pets with average server-side response time of 10ms on my Macbook Air/virtual server, captured with `morgan`. Takes about half a minute and a couple of requests before v8 (javascript engine) is completely warmed up.
+* Scale extension **complete**. Can handle matching with 500k customers, 500k pets with average server-side response time of 10ms captured with `morgan`. Takes about half a minute and a couple of requests before v8 (javascript engine) is completely warmed up.
 * Real-time extension **incomplete**. Currently, a websocket echo server is listening at `/customers/:id/matches`. Test using `wscat`
 * Location extension **incomplete**
 
