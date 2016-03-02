@@ -5,6 +5,7 @@ Pets.local is written in `node.js` using `express`, with `postgres` as the datab
 
 **Usage**
 ```
+$ export PG_CONNECTION_STRING=<your posgres connection string here>
 $ npm i
 $ npm start
 ```
