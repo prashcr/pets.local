@@ -1,23 +1,22 @@
 Pets.local
 =======
 
+Pets.local is a REST API for a pet store app, that aims to match customers with pets, and vice versa.
+
 Pets.local is written in `node.js` using `express`, with `postgres` as the database.
 
 **Usage**
 ```
-$ export PG_CONNECTION_STRING=<your posgres connection string here>
+$ export PG_CONNECTION_STRING=<your postgres connection string here>
 $ npm i
 $ npm start
 ```
-
-The server is currently hosted on a DigitalOcean droplet at http://128.199.245.235:4545/,
-and contains 500k customers and 500k pets, with auto-increment id fields
 
 server.js
 ---------
 
 * Basic functionality **complete**.
-* Scale extension **complete**. Can handle matching with 500k customers, 500k pets with average server-side response time of 10ms captured with `morgan`. Takes about half a minute and a couple of requests before v8 (javascript engine) is completely warmed up.
+* Scale extension **complete**.
 * Real-time extension **incomplete**. Currently, a websocket echo server is listening at `/customers/:id/matches`. Test using `wscat`
 * Location extension **incomplete**
 

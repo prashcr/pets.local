@@ -17,8 +17,6 @@ const pets = express.Router()
 app.use(logger('dev'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use('/pets', pets)
-app.use('/customers', customers)
 app.use(myh.logErrors)
 app.use(myh.errorHandler)
 
@@ -41,13 +39,14 @@ pets.get('/:id/matches', (req, res, next) => {
   const qs = req.query
   const pet_id = +req.params.id
   knex('customer')
-    .select('customer.*')
+    .distinct('customer.id')
+    .select()
     .joinRaw(`JOIN pet
       ON (customer.prefMinAge IS NULL OR pet.age >= customer.prefMinAge)
       AND (customer.prefMaxAge IS NULL OR pet.age <= customer.prefMaxAge)
       AND (
-        (customer.prefSpecies IS NULL OR pet.species = ANY(customer.prefSpecies)) OR
-        (customer.prefBreeds IS NULL OR pet.species = ANY(customer.prefBreeds))
+        (customer.prefSpecies IS NULL OR pet.species = ANY(customer.prefSpecies)) AND
+        (customer.prefBreeds IS NULL OR pet.species <> 'dog' OR pet.breed = ANY(customer.prefBreeds))
       )`)
     .whereNotIn('customer.id', function() {
       this.select('cust_id').from('adopted')
@@ -86,8 +85,8 @@ customers.get('/:id/matches', (req, res, next) => {
       ON (customer.prefMinAge IS NULL OR pet.age >= customer.prefMinAge)
       AND (customer.prefMaxAge IS NULL OR pet.age <= customer.prefMaxAge)
       AND (
-        (customer.prefSpecies IS NULL OR pet.species = ANY(customer.prefSpecies)) OR
-        (customer.prefBreeds IS NULL OR pet.species = ANY(customer.prefBreeds))
+        (customer.prefSpecies IS NULL OR pet.species = ANY(customer.prefSpecies)) AND
+        (customer.prefBreeds IS NULL OR pet.species <> 'dog' OR pet.breed = ANY(customer.prefBreeds))
       )`)
     .where('customer.id', id)
     .whereNotIn('customer.id', function() {
